@@ -20,7 +20,7 @@ def stream_users():
     cursor = connection.cursor(dictionary=True)  # return rows as dicts
     cursor.execute("SELECT * FROM user_data;")
     
-    for row in cursor:  # only one loop allowed
+    for row in cursor:  
         yield row
     
     cursor.close()
