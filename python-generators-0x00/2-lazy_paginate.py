@@ -1,5 +1,4 @@
-# File: 2-lazy_paginate.py
-#!/usr/bin/python3
+
 seed = __import__('seed')
 
 
