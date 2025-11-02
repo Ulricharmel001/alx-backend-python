@@ -26,8 +26,8 @@ def connect_to_prodev():
         connection = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="123",    
-            database="ALX_prodev"
+            password="Dahyebga,1",    
+            database="alx_prodev"
         )
         return connection
     except Exception as e:
