@@ -16,9 +16,10 @@ def stream_users_in_batches(batch_size):
         batch = cursor.fetchall()
         connection.close()
 
-        if not batch:
+        if not batch:  # Stop iteration if no more data
             break
 
+        # Yield the batch without using return
         yield batch
         offset += batch_size
 
