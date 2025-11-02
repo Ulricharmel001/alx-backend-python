@@ -1,8 +1,12 @@
+# File: 2-lazy_paginate.py
 #!/usr/bin/python3
 seed = __import__('seed')
 
 
 def paginate_users(page_size, offset):
+    """
+    Fetch a page of users from the database starting at offset.
+    """
     connection = seed.connect_to_prodev()
     cursor = connection.cursor(dictionary=True)
     cursor.execute(f"SELECT * FROM user_data LIMIT {page_size} OFFSET {offset}")
@@ -12,10 +16,14 @@ def paginate_users(page_size, offset):
 
 
 def lazy_pagination(page_size):
+    """
+    Generator to lazily fetch users page by page.
+    """
     offset = 0
-    while True:     # only one loop allowed
+
+    while True:
         page = paginate_users(page_size, offset)
-        if not page:
+        if not page:  # No more data
             break
         yield page
         offset += page_size
