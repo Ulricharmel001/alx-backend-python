@@ -8,7 +8,7 @@ def connect_db():
         connection = mysql.connector.connect(
             host="localhost",
             user="root",
-            password=""      # << put your mysql root password here if you have
+            password="Dahyebga,1"      
         )
         return connection
     except Exception as e:
