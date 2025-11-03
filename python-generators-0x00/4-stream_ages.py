@@ -1,9 +1,5 @@
 #!/usr/bin/env python3
 def stream_user_ages():
-    """
-    Generator function that yields user ages one by one.
-    Replace the sample data with your actual dataset if needed.
-    """
     users = [
         {"name": "Alice", "age": 25},
         {"name": "Bob", "age": 30},

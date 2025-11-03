@@ -22,7 +22,7 @@ def lazy_pagination(page_size):
 
     while True:
         page = paginate_users(page_size, offset)
-        if not page:  # No more data
+        if not page:  
             break
         yield page
         offset += page_size

@@ -1,12 +1,13 @@
 #!/usr/bin/python3
+from config import DB_HOST, DB_PASSWORD, DB_PORT, DB_USER
 import mysql.connector
 
 def connect_to_prodev():
     """Connect to the ALX_prodev database."""
     connection = mysql.connector.connect(
-        host="localhost",
-        user="root",
-        password="Dahyebga,1",  
+        host=DB_HOST,
+        user=DB_USER,
+        password=DB_PASSWORD,
         database="ALX_prodev"
     )
     return connection

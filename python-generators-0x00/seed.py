@@ -1,63 +1,79 @@
 #!/usr/bin/python3
-import mysql.connector
 import csv
 import uuid
+import mysql.connector
+
+from config import DB_HOST, DB_USER, DB_PASSWORD, DB_PORT
+import data.csv
+
+csv_file = data.csv
 
 def connect_db():
     try:
-        connection = mysql.connector.connect(
-            host="localhost",
-            user="root",
-            password="Dahyebga,1"      
+        conn = mysql.connector.connect(
+            host=DB_HOST,
+            user=DB_USER,
+            password=DB_PASSWORD,
+            port=DB_PORT
         )
-        return connection
-    except Exception as e:
-        print(e)
+        return conn
+    except mysql.connector.Error as e:
+        print(f"Error connecting to MySQL: {e}")
         return None
+
 
 def create_database(connection):
     cursor = connection.cursor()
     cursor.execute("CREATE DATABASE IF NOT EXISTS ALX_prodev;")
-    connection.commit()
     cursor.close()
+    connection.commit()
+
 
 def connect_to_prodev():
     try:
-        connection = mysql.connector.connect(
-            host="localhost",
-            user="root",
-            password="Dahyebga,1",    
-            database="alx_prodev"
+        conn = mysql.connector.connect(
+            host=DB_HOST,
+            user=DB_USER,
+            password=DB_PASSWORD,
+            database="ALX_prodev",
+            port=DB_PORT
         )
-        return connection
-    except Exception as e:
-        print(e)
+        return conn
+    except mysql.connector.Error as e:
+        print(f"Error connecting to ALX_prodev DB: {e}")
         return None
+
 
 def create_table(connection):
     cursor = connection.cursor()
-    cursor.execute("""
-        CREATE TABLE IF NOT EXISTS user_data(
+    cursor.execute(
+        """
+        CREATE TABLE IF NOT EXISTS user_data (
             user_id VARCHAR(36) PRIMARY KEY,
             name VARCHAR(255) NOT NULL,
             email VARCHAR(255) NOT NULL,
             age DECIMAL NOT NULL
         );
-    """)
+        """
+    )
     connection.commit()
     cursor.close()
     print("Table user_data created successfully")
 
+
 def insert_data(connection, csv_file):
     cursor = connection.cursor()
 
-    with open(csv_file, "r") as file:
-        reader = csv.DictReader(file)
+    with open(csv_file, newline='', encoding='utf-8') as file:
+        reader = csv.reader(file)
         for row in reader:
+            name, email, age = row
+            uid = str(uuid.uuid4())
+
             cursor.execute("""
-                INSERT IGNORE INTO user_data (user_id, name, email, age)
+                INSERT INTO user_data (user_id, name, email, age)
                 VALUES (%s, %s, %s, %s)
-            """, (row["user_id"], row["name"], row["email"], row["age"]))
+            """, (uid, name, email, age))
 
     connection.commit()
     cursor.close()
