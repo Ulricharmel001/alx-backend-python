@@ -8,7 +8,8 @@ def connect_to_prodev():
         host=DB_HOST,
         user=DB_USER,
         password=DB_PASSWORD,
-        database="ALX_prodev"
+        database="ALX_prodev",
+        port = DB_PORT
     )
     return connection
 

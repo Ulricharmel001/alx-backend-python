@@ -1,12 +1,8 @@
-#!/usr/bin/python3
 import csv
 import uuid
 import mysql.connector
-
 from config import DB_HOST, DB_USER, DB_PASSWORD, DB_PORT
-import data.csv
 
-csv_file = data.csv
 
 def connect_db():
     try:
@@ -25,8 +21,8 @@ def connect_db():
 def create_database(connection):
     cursor = connection.cursor()
     cursor.execute("CREATE DATABASE IF NOT EXISTS ALX_prodev;")
-    cursor.close()
     connection.commit()
+    cursor.close()
 
 
 def connect_to_prodev():
@@ -51,7 +47,7 @@ def create_table(connection):
         CREATE TABLE IF NOT EXISTS user_data (
             user_id VARCHAR(36) PRIMARY KEY,
             name VARCHAR(255) NOT NULL,
-            email VARCHAR(255) NOT NULL,
+            email VARCHAR(255) NOT NULL UNIQUE,
             age DECIMAL NOT NULL
         );
         """
@@ -62,18 +58,34 @@ def create_table(connection):
 
 
 def insert_data(connection, csv_file):
+    """Insert data from CSV into user_data table safely."""
     cursor = connection.cursor()
 
     with open(csv_file, newline='', encoding='utf-8') as file:
         reader = csv.reader(file)
+
+        # Skip the header row if it exists
+        next(reader, None)
+
         for row in reader:
             name, email, age = row
+
+            try:
+                age = int(age)  # ensure age is numeric
+            except ValueError:
+                print(f"Skipping invalid age value: {age}")
+                continue
+
             uid = str(uuid.uuid4())
 
-            cursor.execute("""
-                INSERT INTO user_data (user_id, name, email, age)
-                VALUES (%s, %s, %s, %s)
-            """, (uid, name, email, age))
+            try:
+                cursor.execute("""
+                    INSERT INTO user_data (user_id, name, email, age)
+                    VALUES (%s, %s, %s, %s)
+                """, (uid, name, email, age))
+            except mysql.connector.IntegrityError:
+                # skip duplicates safely
+                continue
 
     connection.commit()
     cursor.close()

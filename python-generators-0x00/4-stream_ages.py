@@ -16,13 +16,12 @@ def calculate_average_age():
     total_age = 0
     count = 0
 
-    # Use only one loop over the generator
     for age in stream_user_ages():
         total_age += age
         count += 1
 
     average = total_age / count if count > 0 else 0
-    print(f"Average age of users: {average:.2f}")
+    print(f"Average age of users: {average:.3f}")
 
 
 if __name__ == "__main__":
