@@ -1,3 +1,21 @@
+import functools
+import importlib.util
+import sys
+from pathlib import Path
+
+# Path to the file
+file_path = Path(__file__).parent / "1-with_db_connection.py"
+
+# Create a module spec
+spec = importlib.util.spec_from_file_location("with_db_connection_module", file_path)
+module = importlib.util.module_from_spec(spec)
+sys.modules["with_db_connection_module"] = module
+spec.loader.exec_module(module)
+
+# Ready to use 
+with_db_connection = module.with_db_connection
+
+
 query_cache = {}
 
 def cache_query(func):
