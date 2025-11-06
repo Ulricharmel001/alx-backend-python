@@ -13,10 +13,8 @@ module = importlib.util.module_from_spec(spec)
 sys.modules["with_db_connection_module"] = module
 spec.loader.exec_module(module)
 
-# Now you can use it
+# Ready to use 
 with_db_connection = module.with_db_connection
-
-
 
 # Decorator to manage transactions
 def transactional(func):
