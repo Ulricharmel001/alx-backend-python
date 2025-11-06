@@ -1,27 +1,26 @@
-import sqlite3
-import functools
+query_cache = {}
 
-# Decorator to log SQL queries
-def log_queries(func):
+def cache_query(func):
     @functools.wraps(func)
-    def wrapper(*args, **kwargs):
-        query = kwargs.get('query') if 'query' in kwargs else args[0]
-        print(f"[LOG] Executing SQL query: {query}")
-        return func(*args, **kwargs)
+    def wrapper(conn, query, *args, **kwargs):
+        if query in query_cache:
+            print("[CACHE] Returning cached result")
+            return query_cache[query]
+        result = func(conn, query, *args, **kwargs)
+        query_cache[query] = result
+        return result
     return wrapper
 
-# Example usage
-@log_queries
-def fetch_all_users(query):
-    conn = sqlite3.connect('users.db')
+# Combine with connection decorator
+@with_db_connection
+@cache_query
+def fetch_users_with_cache(conn, query):
     cursor = conn.cursor()
     cursor.execute(query)
-    results = cursor.fetchall()
-    conn.close()
-    return results
+    return cursor.fetchall()
 
-# Fetch users while logging the query
-users = fetch_all_users(query="SELECT * FROM users")
-print(users)
+# First call caches the result
+users = fetch_users_with_cache(query="SELECT * FROM users")
 
-
+# Second call uses cached result
+users_again = fetch_users_with_cache(query="SELECT * FROM users")
