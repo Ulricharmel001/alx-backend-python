@@ -1,5 +1,7 @@
 import sqlite3
 import functools
+from datetime import datetime
+
 
 #### decorator to lof SQL queries
 
@@ -14,6 +16,8 @@ class log_queries:
         return self.func(*args, **kwargs)
     def __get__(self, instance, owner):
         return functools.partial(self.__call__, instance)
+    # display all user fetched
+
 #### usage example
 
 @log_queries
@@ -24,6 +28,8 @@ def fetch_all_users(query):
     results = cursor.fetchall()
     conn.close()
     return results
+    
 
 #### fetch users while logging the query
 users = fetch_all_users(query="SELECT * FROM users")
+print(f"{users}, fetched {len(users)} users")
