@@ -31,7 +31,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     # API routes
-    path('api/', include('messaging.urls')),
+    path('api/', include('chats.urls')),
 
     # Swagger documentation routes
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
