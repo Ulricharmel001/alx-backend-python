@@ -17,3 +17,25 @@ Implement the endpoints to create a new conversation and send messages to an exi
 
 
 class ConversationViewSet(viewsets.ModelViewSet):
+    class Meta:
+        model = Conversation
+        serializer_class = ConversationSerializer
+        queryset = Conversation.objects.all()
+
+class MessageViewSet(viewsets.ModelViewSet):
+    class Meta:
+        model = Message
+        serializer_class = MessageSerializer
+        queryset = Message.objects.all()
+class ConversationCreateViewSet(viewsets.ModelViewSet):
+    class Meta:
+        model = Conversation
+        serializer_class = ConversationCreateSerializer
+        queryset = Conversation.objects.all()
+class MessageCreateViewSet(viewsets.ModelViewSet):
+    class Meta:
+        model = Message
+        serializer_class = MessageCreateSerializer
+        queryset = Message.objects.all()
+
+
