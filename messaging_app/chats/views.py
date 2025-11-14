@@ -4,38 +4,30 @@ from django.shortcuts import render
 from rest_framework import viewsets
 from .models import Conversation, Message
 from .serializers import ConversationSerializer, MessageSerializer, ConversationCreateSerializer, MessageCreateSerializer
-
-"""Objective: implement API endpoints for conversations and messages
-
-Instructions:
-
-Using viewsets from rest-framework Create 
-viewsets for listing conversations (ConversationViewSet) and messages (MessageViewSet)
-
-Implement the endpoints to create a new conversation and send messages to an existing one
-"""
-
+from rest_framework.response import Response
+from rest_framework import status
+from django.shortcuts import get_object_or_404
+from django.urls import  render
 
 class ConversationViewSet(viewsets.ModelViewSet):
-    class Meta:
-        model = Conversation
-        serializer_class = ConversationSerializer
-        queryset = Conversation.objects.all()
+    queryset = Conversation.objects.all()
+    serializer_class = ConversationSerializer
+    def post(self, request, *args, **kwargs):
+        serializer = ConversationCreateSerializer(data=request.data)
+        if serializer.is_valid():
+            conversation = serializer.save()
+            return Response(ConversationSerializer(conversation).data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class MessageViewSet(viewsets.ModelViewSet):
-    class Meta:
-        model = Message
-        serializer_class = MessageSerializer
-        queryset = Message.objects.all()
-class ConversationCreateViewSet(viewsets.ModelViewSet):
-    class Meta:
-        model = Conversation
-        serializer_class = ConversationCreateSerializer
-        queryset = Conversation.objects.all()
-class MessageCreateViewSet(viewsets.ModelViewSet):
-    class Meta:
-        model = Message
-        serializer_class = MessageCreateSerializer
-        queryset = Message.objects.all()
+    queryset = Message.objects.all()
+    serializer_class = MessageSerializer
+    def post(self, request, *args, **kwargs):
+        serializer = MessageCreateSerializer(data=request.data)
+        if serializer.is_valid():
+            message = serializer.save(sender=request.user)
+            return Response(MessageSerializer(message).data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
 
-
+    
