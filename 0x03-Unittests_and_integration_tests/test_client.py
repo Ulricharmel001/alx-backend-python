@@ -34,21 +34,29 @@ class TestGithubOrgClient(unittest.TestCase):
         client = GithubOrgClient(org_name)
         result = client.org
         self.assertEqual(result, {"key": "value"})
-        mock_get_json.assert_called_once_with(f"https://api.github.com/orgs/{org_name}")
+        mock_get_json.assert_called_once_with(
+            f"https://api.github.com/orgs/{org_name}"
+        )
 
     def test_public_repos_url(self):
         """Test _public_repos_url property returns the org repos URL."""
         client = GithubOrgClient("google")
-        with patch.object(GithubOrgClient, "org", new_callable=PropertyMock) as mock_org:
+        with patch.object(
+            GithubOrgClient, "org", new_callable=PropertyMock
+        ) as mock_org:
             mock_org.return_value = {"repos_url": "https://api.github.com/orgs/google/repos"}
-            self.assertEqual(client._public_repos_url, "https://api.github.com/orgs/google/repos")
+            self.assertEqual(
+                client._public_repos_url, "https://api.github.com/orgs/google/repos"
+            )
 
     @patch("client.get_json")
     def test_public_repos(self, mock_get_json):
         """Test public_repos returns repo names, optionally filtered by license."""
         mock_get_json.return_value = repos_payload
         client = GithubOrgClient("google")
-        with patch.object(GithubOrgClient, "_public_repos_url", new_callable=PropertyMock) as mock_url:
+        with patch.object(
+            GithubOrgClient, "_public_repos_url", new_callable=PropertyMock
+        ) as mock_url:
             mock_url.return_value = "https://api.github.com/orgs/google/repos"
             self.assertEqual(client.public_repos(), [repo["name"] for repo in repos_payload])
             self.assertEqual(client.public_repos(license="bsd-3-clause"), apache2_repos)
@@ -102,7 +110,9 @@ class TestIntegrationGithubOrgClient(unittest.TestCase):
     def test_public_repos_with_license(self):
         """Test that public_repos filters repos by license key."""
         client = GithubOrgClient("google")
-        self.assertEqual(client.public_repos(license="bsd-3-clause"), self.apache2_repos)
+        self.assertEqual(
+            client.public_repos(license="bsd-3-clause"), self.apache2_repos
+        )
 
 
 if __name__ == "__main__":
