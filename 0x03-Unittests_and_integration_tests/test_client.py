@@ -77,8 +77,9 @@ class TestIntegrationGithubOrgClient(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         """Patch get_json for integration tests."""
-        cls.get_patcher = patch("client.get_json")
-        cls.mock_get = cls.get_patcher.start()
+        patcher = patch("client.get_json")  # store patch object locally
+        cls.mock_get = patcher.start()      # start patching, get mock object
+        cls.patcher = patcher                # store patcher to stop later
 
         # Return org_payload for org URL, repos_payload for repos URL
         def side_effect(url):
@@ -91,7 +92,7 @@ class TestIntegrationGithubOrgClient(unittest.TestCase):
     @classmethod
     def tearDownClass(cls):
         """Stop patching."""
-        cls.get_patcher.stop()
+        cls.patcher.stop()
 
     def test_public_repos(self):
         """Test that public_repos returns all repo names."""
