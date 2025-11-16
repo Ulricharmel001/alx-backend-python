@@ -1,13 +1,8 @@
 #!/usr/bin/env python3
-"""
-Unit and integration tests for utils.py.
-"""
-
 import unittest
 from unittest.mock import patch
 from parameterized import parameterized
 from utils import access_nested_map, get_json, memoize
-
 
 class TestAccessNestedMap(unittest.TestCase):
     """Tests for access_nested_map."""
@@ -29,10 +24,8 @@ class TestAccessNestedMap(unittest.TestCase):
         with self.assertRaises(KeyError):
             access_nested_map(nested_map, path)
 
-
 class TestGetJson(unittest.TestCase):
     """Tests for get_json."""
-
     @parameterized.expand([
         ("http://example.com", {"payload": True}),
         ("http://holberton.io", {"value": 1}),
@@ -44,10 +37,8 @@ class TestGetJson(unittest.TestCase):
             self.assertEqual(get_json(url), expected_payload)
             mock_get.assert_called_once_with(url)
 
-
 class TestMemoize(unittest.TestCase):
     """Tests for memoize decorator."""
-
     def test_memoize(self):
         """Check method result cached and called once."""
         class TestClass:
@@ -78,7 +69,6 @@ class TestGetJsonIntegration(unittest.TestCase):
         result = get_json("http://fakeurl.com/api")
         self.assertEqual(result, expected_data)
         mock_get.assert_called_once_with("http://fakeurl.com/api")
-
 
 if __name__ == "__main__":
     unittest.main()
