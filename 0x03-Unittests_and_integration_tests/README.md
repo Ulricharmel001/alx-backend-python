@@ -1,13 +1,14 @@
 # Unit Testing `access_nested_map`
 
-This project contains a simple Python utility function, `access_nested_map`, and its corresponding unit tests using `unittest` and `parameterized`.
+This project contains a Python utility function, `access_nested_map`, and its corresponding unit and integration tests using `unittest` and `parameterized`.
 
 ## Overview
 
-- `utils.py`: Implements `access_nested_map` to access nested dictionaries via a path of keys.
-- `test_utils.py`: Contains unit tests for `access_nested_map` including:
-  - Normal cases where the function returns the expected value.
-  - Exception cases where a `KeyError` is raised for invalid paths.
+- `utils.py`: Implements `access_nested_map`, `get_json`, and `memoize`.
+- `test_utils.py`: Contains tests for:
+  - `access_nested_map`: normal and exception cases.
+  - `get_json`: mocked HTTP calls.
+  - `memoize`: ensures caching works as expected.
 
 ## How to Run Tests
 
