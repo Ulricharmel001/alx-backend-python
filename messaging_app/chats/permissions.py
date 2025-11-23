@@ -7,10 +7,12 @@ class IsParticipantOfConversation(BasePermission):
     """
 
     def has_permission(self, request, view):
+        all
         # Only allow access if the user is authenticated
         return request.user and request.user.is_authenticated
 
     def has_object_permission(self, request, view, obj):
+        allowed_methods = ['GET', 'POST', 'PUT', 'PATCH', 'DELETE']
         # If the object is a Conversation, check if the user is a participant
         if hasattr(obj, "participants"):
             return request.user in obj.participants.all()
