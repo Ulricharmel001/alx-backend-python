@@ -1,6 +1,6 @@
 from rest_framework.permissions import BasePermission, IsAuthenticated
 from chats.models import Conversation, Message
-from rest_framework.request import permissions
+from rest_framework import permissions
 
 
 class IsParticipantOfConversation(BasePermission):
