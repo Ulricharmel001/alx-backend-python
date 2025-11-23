@@ -41,7 +41,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'corsheaders.middleware.CorsMiddleware',  # Handles CORS headers
+    'corsheaders.middleware.CorsMiddleware', 
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -55,7 +55,7 @@ ROOT_URLCONF = 'messaging_app.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],  # Add template directories here if needed
+        'DIRS': [],  
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -80,13 +80,13 @@ DATABASES = {
         'PORT': env('DB_PORT'),
     }
 }
-# messaging_app/settings.py
 
 REST_FRAMEWORK = {
-    # Global authentication classes
+
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',  
-        'rest_framework.authentication.BasicAuthentication',      
+        'rest_framework.authentication.BasicAuthentication',    
+        'rest_framework.authentication.SessionAuthentication',  
     ),
 
     'DEFAULT_PERMISSION_CLASSES': (
@@ -116,7 +116,7 @@ USE_TZ = True
 
 # --- STATIC AND MEDIA FILES ---
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # Collect static files here
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
