@@ -3,6 +3,8 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.exceptions import NotFound
 from .models import Conversation, Message
+from .pagination import MessagePagination
+from .filters import MessageFilter
 from .serializers import (
     ConversationSerializer,
     ConversationCreateSerializer,
@@ -55,6 +57,8 @@ class MessageViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated, IsParticipantOfConversation]
     serializer_class = MessageSerializer
     filter_backends = [filters.SearchFilter, filters.OrderingFilter]
+    pagination_class = MessagePagination
+    filterset_class = MessageFilter
     search_fields = ['sender__email', 'message_body']
     ordering_fields = ['sent_at']
     ordering = ['-sent_at']
