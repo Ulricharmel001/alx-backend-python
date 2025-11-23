@@ -1,0 +1,28 @@
+Collecting drf-yasg
+  Downloading drf_yasg-1.21.11-py3-none-any.whl.metadata (17 kB)
+Requirement already satisfied: django>=4.0 in ./messaging-env/lib/python3.12/site-packages (from drf-yasg) (5.2.8)
+Requirement already satisfied: djangorestframework>=3.13 in ./messaging-env/lib/python3.12/site-packages (from drf-yasg) (3.16.1)
+Collecting inflection>=0.3.1 (from drf-yasg)
+  Downloading inflection-0.5.1-py2.py3-none-any.whl.metadata (1.7 kB)
+Collecting packaging>=21.0 (from drf-yasg)
+  Downloading packaging-25.0-py3-none-any.whl.metadata (3.3 kB)
+Collecting pytz>=2021.1 (from drf-yasg)
+  Downloading pytz-2025.2-py2.py3-none-any.whl.metadata (22 kB)
+Collecting pyyaml>=5.1 (from drf-yasg)
+  Downloading pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.4 kB)
+Collecting uritemplate>=3.0.0 (from drf-yasg)
+  Downloading uritemplate-4.2.0-py3-none-any.whl.metadata (2.6 kB)
+Requirement already satisfied: asgiref>=3.8.1 in ./messaging-env/lib/python3.12/site-packages (from django>=4.0->drf-yasg) (3.11.0)
+Requirement already satisfied: sqlparse>=0.3.1 in ./messaging-env/lib/python3.12/site-packages (from django>=4.0->drf-yasg) (0.5.3)
+Downloading drf_yasg-1.21.11-py3-none-any.whl (4.3 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.3/4.3 MB 2.4 MB/s eta 0:00:00
+Downloading inflection-0.5.1-py2.py3-none-any.whl (9.5 kB)
+Downloading packaging-25.0-py3-none-any.whl (66 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 66.5/66.5 kB 480.7 kB/s eta 0:00:00
+Downloading pytz-2025.2-py2.py3-none-any.whl (509 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 509.2/509.2 kB 1.8 MB/s eta 0:00:00
+Downloading pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (807 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 807.9/807.9 kB 2.6 MB/s eta 0:00:00
+Downloading uritemplate-4.2.0-py3-none-any.whl (11 kB)
+Installing collected packages: pytz, uritemplate, pyyaml, packaging, inflection, drf-yasg
+Successfully installed drf-yasg-1.21.11 inflection-0.5.1 packaging-25.0 pytz-2025.2 pyyaml-6.0.3 uritemplate-4.2.0
