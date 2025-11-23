@@ -1,8 +1,4 @@
 from rest_framework.permissions import BasePermission
-from .models import Conversation, Message
-from django.contrib.auth import get_user_model
-from rest_framework.exceptions import PermissionDenied
-from rest_framework import permissions
 
 class IsParticipantOfConversation(BasePermission):
     """
