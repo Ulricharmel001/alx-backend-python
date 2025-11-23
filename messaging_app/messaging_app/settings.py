@@ -1,6 +1,5 @@
-"""
-Django settings for messaging_app project.
-"""
+
+#Django settings for messaging_app project.
 
 from pathlib import Path
 import os
@@ -81,24 +80,20 @@ DATABASES = {
         'PORT': env('DB_PORT'),
     }
 }
+# messaging_app/settings.py
 
-# --- CORS SETTINGS ---
-CORS_ALLOWED_ORIGINS = env.list("CORS_ALLOWED_ORIGINS", default=[])
-CORS_ALLOW_ALL_ORIGINS = False
-CORS_ALLOW_CREDENTIALS = True
-CORS_ALLOW_HEADERS = ['authorization']
-CORS_EXPOSE_HEADERS = ['authorization']
-
-# --- REST FRAMEWORK SETTINGS ---
 REST_FRAMEWORK = {
+    # Global authentication classes
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',  # JWT auth
-        'rest_framework.authentication.SessionAuthentication',        # Session auth for browsable API
+        'rest_framework_simplejwt.authentication.JWTAuthentication',  
+        'rest_framework.authentication.BasicAuthentication',      
     ),
+
     'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated', 
-        ),
-    'PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10,
 }
 
