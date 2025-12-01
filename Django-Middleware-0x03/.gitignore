@@ -1,0 +1,64 @@
+messaging-env/
+.env
+docker-compose.yml 
+.DS_Store
+.vscode/
+
+__pycache__/
+*.pyc
+instance/
+migrations/
+
+tests/
+*.log
+*.sqlite3
+coverage
+
+# docker files
+Dockerfile
+docker-compose.override.yml
+*.env   
+# virtual environment
+venv/
+env/
+.idea/
+*.iml   
+*.swp
+*.swo
+*.bak
+*.tmp
+*.old
+*.orig
+*.rej
+*.class
+*.jar
+*.war
+*.ear
+*.db        
+vscode/settings/
+# MacOS specific
+.DS_Store
+
+# UBUNTU specific
+*~
+# Thumbnails
+._**
+# Trash folder which might appear on any partition or volume
+.Trash-*
+# .directory file
+.directory  
+# JetBrains IDEs
+.idea/
+*.iml   
+# Python specific
+__pycache__/
+*.pyc
+# Environment variables
+.env
+misc.xml
+modules.xml
+workspace.xml
+tasks.xml
+dictionaries/
+shelf/
+

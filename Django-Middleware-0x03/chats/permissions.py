@@ -1,0 +1,24 @@
+from rest_framework.permissions import BasePermission
+
+class IsParticipantOfConversation(BasePermission):
+    """
+    Grants access only to authenticated users who are participants
+    of the conversation or message they are trying to access.
+    """
+
+    def has_permission(self, request, view):
+        all
+        # Only allow access if the user is authenticated
+        return request.user and request.user.is_authenticated
+
+    def has_object_permission(self, request, view, obj):
+        allowed_methods = ['GET', 'POST', 'PUT', 'PATCH', 'DELETE']
+        # If the object is a Conversation, check if the user is a participant
+        if hasattr(obj, "participants"):
+            return request.user in obj.participants.all()
+
+        # If the object is a Message, check if the user is a participant in the related conversation
+        if hasattr(obj, "conversation"):
+            return request.user in obj.conversation.participants.all()
+
+        return False
