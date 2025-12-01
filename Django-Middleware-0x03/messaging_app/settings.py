@@ -48,7 +48,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'chats.middleware.RequestLoggingMiddleware',  # Custom request logging middleware,
+    'messaging_app.chats.middleware.RequestLoggingMiddleware', 
+    
+    
     
 ]
 
