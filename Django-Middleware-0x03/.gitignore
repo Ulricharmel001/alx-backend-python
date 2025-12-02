@@ -10,7 +10,6 @@ instance/
 migrations/
 
 tests/
-*.log
 *.sqlite3
 coverage
 
