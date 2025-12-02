@@ -49,7 +49,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     # My middlewa
-    'chats.middleware.RequestLoggingMiddleware', 
+    'chats.middleware.RequestLoggingMiddleware',
     
     
     

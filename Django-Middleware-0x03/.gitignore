@@ -34,7 +34,6 @@ env/
 *.war
 *.ear
 *.db        
-vscode/settings/
 # MacOS specific
 .DS_Store
 
