@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'drf_yasg',
 ]
 
-IDDLEWARE = [
+MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'corsheaders.middleware.CorsMiddleware',  # Handles CORS headers
     'django.contrib.sessions.middleware.SessionMiddleware',
