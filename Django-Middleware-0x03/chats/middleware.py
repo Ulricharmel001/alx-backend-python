@@ -35,27 +35,24 @@ class RequestLoggingMiddleware:
         return response
 
 
-
-class  RestrictAccessByTimeMiddleware:
-    """Middleware to resrtrict access to a chat and app 
+class RestrictAccessByTimeMiddleware:
+    """Middleware to restrict access to a chat and app 
     between 9pm and  6 Am"""
     
     def __init__(self, get_response):
         self.get_response = get_response
-        
-        
-    def __call__(self, request):
-        # Restrict access between 9 PM and 6 AM
-        current_time = datetime.now().time()
-        start_restrict = time(21, 0)  # 9 PM
-        end_restrict = time(6, 0)     # 6 AM
+        self.get_response = get_response
+        self.start_restrict = time(21, 0)  # 9 PM
+        self.end_restrict = time(6, 0)     # 6 AM
 
-        # If current time is between 9 PM and midnight, or between midnight and 6 AM
-        if (current_time >= start_restrict or current_time < end_restrict):
+    def __call__(self, request):
+        current_time = datetime.now().time()
+
+        # Restrict access between 9 PM and 6 AM
+        if self.start_restrict <= current_time or current_time < self.end_restrict:
             return HttpResponseForbidden("Access to this app is restricted between 9 PM and 6 AM.")
 
-        response = self.get_response(request)
-        return response
+        return self.get_response(request)
         
     
     
