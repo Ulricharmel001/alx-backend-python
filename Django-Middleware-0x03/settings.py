@@ -39,23 +39,21 @@ INSTALLED_APPS = [
     'drf_yasg',
 ]
 
-MIDDLEWARE = [
+IDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'corsheaders.middleware.CorsMiddleware',  # Handles CORS headers
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    # My middleware
+    'chats.middleware.RequestLoggingMiddleware',
+    'chats.middleware.RestrictAccessByTimeMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    # My middlewa
-    'chats.middleware.RequestLoggingMiddleware',
-    
-    
-    
+    'chats.middleware.RestrictAccessByTimeMiddleware'
     
 ]
-
 ROOT_URLCONF = 'messaging_app.urls'
 
 TEMPLATES = [
