@@ -4,11 +4,10 @@ from datetime import datetime
 from django.utils.deprecation import MiddlewareMixin
 from django.conf import settings
 from django.utils.timezone import now
-from django.contrib.auth.models import User
+from chats.models import User
 
 
-
-class RequestLoggingMiddleware ():
+class RequestLoggingMiddleware():
     def __init__(self, get_response):
         self.get_response = get_response
         self.logger = logging.getLogger(__name__)
@@ -19,7 +18,8 @@ class RequestLoggingMiddleware ():
         duration = time.time() - start_time
 
         user = request.user if request.user.is_authenticated else None
-        user_info = f'User ID: {user.id}, Username: {user.username}' if user else 'Anonymous User'
+        # Use user_id (UUID) for custom User model instead of id
+        user_info = f'User ID: {user.user_id}, Email: {user.email}' if user else 'Anonymous User'
 
         log_data = {
             'timestamp': now().isoformat(),
@@ -32,16 +32,5 @@ class RequestLoggingMiddleware ():
         }
 
         self.logger.info(f"Request Log: {log_data}")
-    
-        response = self.get_response(request)
-        
         return response
-    
-    
-class RestrictAccessByTimeMiddleware():
-    def __init__(self, get_response):
-        self.get_response = get_response
-    
-        
-    
-    
+

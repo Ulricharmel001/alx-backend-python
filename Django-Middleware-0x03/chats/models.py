@@ -3,14 +3,14 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 
 
-# 1️⃣ User Roles
+# 1️⃣User Roles
 class UserRole(models.TextChoices):
     GUEST = 'guest', 'Guest'
     HOST = 'host', 'Host'
     ADMIN = 'admin', 'Admin'
 
 
-# 2️⃣ Custom User Manager
+# 2️ Custom User Manager
 class CustomUserManager(BaseUserManager):
     def create_user(self, email, password=None, **extra_fields):
         if not email:
