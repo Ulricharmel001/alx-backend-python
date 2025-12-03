@@ -54,30 +54,29 @@ class RestrictAccessByTimeMiddleware:
         if self.start_restrict <= current_time or current_time < self.end_restrict:
             return HttpResponseForbidden("Access to this app is restricted between 9 PM and 6 AM.")
 
-        return self.get_response(request)
-
-
-
+            return self.get_response(request)
+    
+    
     class OffensiveLanguageMiddleware:
         """
         Middleware that tracks the number of chat messages sent by each IP address
         and implements a time-based limit: 5 messages per minute.
         If a user exceeds the limit, it blocks further messaging and returns an error.
         """
-
+    
         # Shared data structure to track requests per IP
         message_counts = defaultdict(list)
         lock = threading.Lock()
-
+    
         def __init__(self, get_response):
             self.get_response = get_response
-
+    
         def __call__(self, request):
             # Only limit POST requests to the chat message endpoint
             if request.method == "POST" and request.path.startswith("/chats/"):
                 ip = request.META.get("REMOTE_ADDR")
                 now_ts = time.time()
-
+    
                 with self.lock:
                     # Remove timestamps older than 1 minute
                     self.message_counts[ip] = [
@@ -88,7 +87,7 @@ class RestrictAccessByTimeMiddleware:
                             "Message limit exceeded: Max 5 messages per minute."
                         )
                     self.message_counts[ip].append(now_ts)
-
+    
             return self.get_response(request)
 
     

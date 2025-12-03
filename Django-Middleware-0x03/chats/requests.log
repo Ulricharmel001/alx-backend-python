@@ -32,3 +32,71 @@ AttributeError: 'User' object has no attribute 'id'
 [2025-12-02 12:53:02,056] INFO django.server: "GET /static/rest_framework/fonts/glyphicons-halflings-regular.woff2 HTTP/1.1" 200 18028
 [2025-12-02 12:54:55,732] INFO django.utils.autoreload: /home/ulrich/ALX_PRODEV/alx-backend-python/Django-Middleware-0x03/chats/middleware.py changed, reloading.
 [2025-12-02 12:54:56,584] INFO django.utils.autoreload: Watching for file changes with StatReloader
+[2025-12-02 21:27:38,981] INFO django.utils.autoreload: Watching for file changes with StatReloader
+[2025-12-03 05:43:57,117] INFO django.utils.autoreload: Watching for file changes with StatReloader
+[2025-12-03 05:46:11,213] ERROR django.request: Internal Server Error: /
+Traceback (most recent call last):
+  File "/home/ulrich/ALX_PRODEV/alx-backend-python/messaging_app/messaging-env/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ulrich/ALX_PRODEV/alx-backend-python/Django-Middleware-0x03/chats/middleware.py", line 19, in __call__
+    start_time = time.time()
+                 ^^^^^^^^^
+AttributeError: type object 'datetime.time' has no attribute 'time'
+[2025-12-03 05:46:11,216] ERROR django.server: "GET / HTTP/1.1" 500 68304
+[2025-12-03 05:46:15,565] ERROR django.request: Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/home/ulrich/ALX_PRODEV/alx-backend-python/messaging_app/messaging-env/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ulrich/ALX_PRODEV/alx-backend-python/Django-Middleware-0x03/chats/middleware.py", line 19, in __call__
+    start_time = time.time()
+                 ^^^^^^^^^
+AttributeError: type object 'datetime.time' has no attribute 'time'
+[2025-12-03 05:46:15,566] ERROR django.server: "GET /favicon.ico HTTP/1.1" 500 68281
+[2025-12-03 05:47:23,274] INFO django.utils.autoreload: /home/ulrich/ALX_PRODEV/alx-backend-python/Django-Middleware-0x03/chats/middleware.py changed, reloading.
+[2025-12-03 05:47:24,977] INFO django.utils.autoreload: Watching for file changes with StatReloader
+[2025-12-03 05:47:37,814] ERROR django.request: Internal Server Error: /
+Traceback (most recent call last):
+  File "/home/ulrich/ALX_PRODEV/alx-backend-python/messaging_app/messaging-env/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ulrich/ALX_PRODEV/alx-backend-python/Django-Middleware-0x03/chats/middleware.py", line 19, in __call__
+    start_time = time.time()
+                 ^^^^^^^^^
+AttributeError: type object 'datetime.time' has no attribute 'time'
+[2025-12-03 05:47:37,816] ERROR django.server: "GET / HTTP/1.1" 500 68304
+[2025-12-03 05:47:45,382] INFO django.utils.autoreload: /home/ulrich/ALX_PRODEV/alx-backend-python/Django-Middleware-0x03/chats/middleware.py changed, reloading.
+[2025-12-03 05:47:46,106] INFO django.utils.autoreload: Watching for file changes with StatReloader
+[2025-12-03 05:48:53,405] INFO django.utils.autoreload: /home/ulrich/ALX_PRODEV/alx-backend-python/Django-Middleware-0x03/chats/middleware.py changed, reloading.
+[2025-12-03 05:48:54,028] INFO django.utils.autoreload: Watching for file changes with StatReloader
+[2025-12-03 05:49:20,236] INFO django.utils.autoreload: /home/ulrich/ALX_PRODEV/alx-backend-python/Django-Middleware-0x03/chats/middleware.py changed, reloading.
+[2025-12-03 05:49:20,842] INFO django.utils.autoreload: Watching for file changes with StatReloader
+[2025-12-03 05:49:23,401] INFO django.utils.autoreload: /home/ulrich/ALX_PRODEV/alx-backend-python/Django-Middleware-0x03/chats/middleware.py changed, reloading.
+[2025-12-03 05:49:23,974] INFO django.utils.autoreload: Watching for file changes with StatReloader
+[2025-12-03 05:49:26,603] INFO django.utils.autoreload: /home/ulrich/ALX_PRODEV/alx-backend-python/Django-Middleware-0x03/chats/middleware.py changed, reloading.
+[2025-12-03 05:49:27,184] INFO django.utils.autoreload: Watching for file changes with StatReloader
+[2025-12-03 05:49:37,900] INFO django.utils.autoreload: /home/ulrich/ALX_PRODEV/alx-backend-python/Django-Middleware-0x03/chats/middleware.py changed, reloading.
+[2025-12-03 05:49:38,459] INFO django.utils.autoreload: Watching for file changes with StatReloader
+[2025-12-03 05:55:24,855] INFO django.utils.autoreload: Watching for file changes with StatReloader
+[2025-12-03 05:55:29,611] ERROR django.request: Internal Server Error: /
+Traceback (most recent call last):
+  File "/home/ulrich/ALX_PRODEV/alx-backend-python/messaging_app/messaging-env/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ulrich/ALX_PRODEV/alx-backend-python/Django-Middleware-0x03/chats/middleware.py", line 19, in __call__
+    start_time = time.time()
+                 ^^^^^^^^^
+AttributeError: type object 'datetime.time' has no attribute 'time'
+[2025-12-03 05:55:29,613] ERROR django.server: "GET / HTTP/1.1" 500 68302
+[2025-12-03 05:55:33,696] ERROR django.request: Internal Server Error: /
+Traceback (most recent call last):
+  File "/home/ulrich/ALX_PRODEV/alx-backend-python/messaging_app/messaging-env/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ulrich/ALX_PRODEV/alx-backend-python/Django-Middleware-0x03/chats/middleware.py", line 19, in __call__
+    start_time = time.time()
+                 ^^^^^^^^^
+AttributeError: type object 'datetime.time' has no attribute 'time'
+[2025-12-03 05:55:33,698] ERROR django.server: "GET / HTTP/1.1" 500 68302
+[2025-12-03 06:22:56,204] INFO django.utils.autoreload: /home/ulrich/ALX_PRODEV/alx-backend-python/Django-Middleware-0x03/messaging_app/settings.py changed, reloading.
