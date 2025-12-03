@@ -8,6 +8,8 @@ from chats.models import User
 from django.http import HttpResponseForbidden
 from collections import defaultdict
 import threading
+from django.urls import reverse
+from messaging_app.settings import AUTH_USER_MODEL as User
 
 
 class RequestLoggingMiddleware:
@@ -54,7 +56,7 @@ class RestrictAccessByTimeMiddleware:
         if self.start_restrict <= current_time or current_time < self.end_restrict:
             return HttpResponseForbidden("Access to this app is restricted between 9 PM and 6 AM.")
 
-            return self.get_response(request)
+        return self.get_response(request)
     
     
     class OffensiveLanguageMiddleware:
@@ -89,6 +91,33 @@ class RestrictAccessByTimeMiddleware:
                     self.message_counts[ip].append(now_ts)
     
             return self.get_response(request)
+        
+        
+        
+class RolepermissionMiddleware:
+    def __def__(self, get_response):
+        self,get_response = get_response
+        self.protected_paths = [
+            # path to be restricted to Access 
+            reverse('admin:index')
+        ]
+        
+        
+    def __call__(self, request):
+        if request.path in self.protected_paths:
+            if not request.User.is_authenticated:
+                return HttpResponseForbidden("<h2> 403 forbidden: You must be logged in .<h2>")
+            # check for  admin or moderator
+            
+            is_admin = request.User.is_superuser
+            is_moderator  = request.User.groups.filter(name="moderator").exist()
+            
+            if not (is_admin or is_moderator):
+                return HttpResponseForbidden("<h2> 403 forbidden: You not allowed to access this area! <h2>.")
+            response = self.get_response(request)
+            return response
+        
+        
 
     
     
