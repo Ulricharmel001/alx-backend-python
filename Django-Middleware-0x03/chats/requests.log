@@ -100,3 +100,42 @@ Traceback (most recent call last):
 AttributeError: type object 'datetime.time' has no attribute 'time'
 [2025-12-03 05:55:33,698] ERROR django.server: "GET / HTTP/1.1" 500 68302
 [2025-12-03 06:22:56,204] INFO django.utils.autoreload: /home/ulrich/ALX_PRODEV/alx-backend-python/Django-Middleware-0x03/messaging_app/settings.py changed, reloading.
+[2025-12-03 07:27:42,456] INFO django.utils.autoreload: Watching for file changes with StatReloader
+[2025-12-03 07:28:47,349] INFO django.utils.autoreload: /home/ulrich/ALX_PRODEV/alx-backend-python/Django-Middleware-0x03/chats/middleware.py changed, reloading.
+[2025-12-03 07:28:48,152] INFO django.utils.autoreload: Watching for file changes with StatReloader
+[2025-12-03 07:29:31,880] INFO django.utils.autoreload: /home/ulrich/ALX_PRODEV/alx-backend-python/Django-Middleware-0x03/chats/middleware.py changed, reloading.
+[2025-12-03 07:29:32,447] INFO django.utils.autoreload: Watching for file changes with StatReloader
+[2025-12-03 07:29:41,136] INFO django.utils.autoreload: /home/ulrich/ALX_PRODEV/alx-backend-python/Django-Middleware-0x03/chats/middleware.py changed, reloading.
+[2025-12-03 07:29:41,940] INFO django.utils.autoreload: Watching for file changes with StatReloader
+[2025-12-03 07:30:05,080] INFO django.utils.autoreload: /home/ulrich/ALX_PRODEV/alx-backend-python/Django-Middleware-0x03/chats/middleware.py changed, reloading.
+[2025-12-03 07:30:05,785] INFO django.utils.autoreload: Watching for file changes with StatReloader
+[2025-12-03 07:30:10,447] INFO django.utils.autoreload: /home/ulrich/ALX_PRODEV/alx-backend-python/Django-Middleware-0x03/chats/middleware.py changed, reloading.
+[2025-12-03 07:30:11,049] INFO django.utils.autoreload: Watching for file changes with StatReloader
+[2025-12-03 07:30:27,124] INFO django.utils.autoreload: /home/ulrich/ALX_PRODEV/alx-backend-python/Django-Middleware-0x03/chats/middleware.py changed, reloading.
+[2025-12-03 07:30:27,775] INFO django.utils.autoreload: Watching for file changes with StatReloader
+[2025-12-03 07:30:36,464] INFO django.utils.autoreload: /home/ulrich/ALX_PRODEV/alx-backend-python/Django-Middleware-0x03/chats/middleware.py changed, reloading.
+[2025-12-03 07:30:36,956] INFO django.utils.autoreload: Watching for file changes with StatReloader
+[2025-12-03 07:32:00,920] INFO django.utils.autoreload: /home/ulrich/ALX_PRODEV/alx-backend-python/Django-Middleware-0x03/chats/middleware.py changed, reloading.
+[2025-12-03 07:32:01,451] INFO django.utils.autoreload: Watching for file changes with StatReloader
+[2025-12-03 07:32:04,294] INFO django.utils.autoreload: /home/ulrich/ALX_PRODEV/alx-backend-python/Django-Middleware-0x03/chats/middleware.py changed, reloading.
+[2025-12-03 07:32:04,875] INFO django.utils.autoreload: Watching for file changes with StatReloader
+[2025-12-03 07:32:08,409] INFO django.utils.autoreload: /home/ulrich/ALX_PRODEV/alx-backend-python/Django-Middleware-0x03/chats/middleware.py changed, reloading.
+[2025-12-03 07:32:09,086] INFO django.utils.autoreload: Watching for file changes with StatReloader
+[2025-12-03 07:32:12,847] INFO django.utils.autoreload: /home/ulrich/ALX_PRODEV/alx-backend-python/Django-Middleware-0x03/chats/middleware.py changed, reloading.
+[2025-12-03 07:32:13,392] INFO django.utils.autoreload: Watching for file changes with StatReloader
+[2025-12-03 07:32:21,027] INFO django.utils.autoreload: /home/ulrich/ALX_PRODEV/alx-backend-python/Django-Middleware-0x03/chats/middleware.py changed, reloading.
+[2025-12-03 07:32:21,634] INFO django.utils.autoreload: Watching for file changes with StatReloader
+[2025-12-03 07:32:26,392] INFO django.utils.autoreload: /home/ulrich/ALX_PRODEV/alx-backend-python/Django-Middleware-0x03/chats/middleware.py changed, reloading.
+[2025-12-03 07:32:26,977] INFO django.utils.autoreload: Watching for file changes with StatReloader
+[2025-12-03 07:32:34,592] INFO django.utils.autoreload: /home/ulrich/ALX_PRODEV/alx-backend-python/Django-Middleware-0x03/chats/middleware.py changed, reloading.
+[2025-12-03 07:32:35,067] INFO django.utils.autoreload: Watching for file changes with StatReloader
+[2025-12-03 07:32:39,630] INFO django.utils.autoreload: /home/ulrich/ALX_PRODEV/alx-backend-python/Django-Middleware-0x03/chats/middleware.py changed, reloading.
+[2025-12-03 07:32:40,190] INFO django.utils.autoreload: Watching for file changes with StatReloader
+[2025-12-03 07:33:00,078] INFO django.utils.autoreload: /home/ulrich/ALX_PRODEV/alx-backend-python/Django-Middleware-0x03/chats/middleware.py changed, reloading.
+[2025-12-03 07:33:00,643] INFO django.utils.autoreload: Watching for file changes with StatReloader
+[2025-12-03 07:33:03,297] INFO django.utils.autoreload: /home/ulrich/ALX_PRODEV/alx-backend-python/Django-Middleware-0x03/chats/middleware.py changed, reloading.
+[2025-12-03 07:33:03,837] INFO django.utils.autoreload: Watching for file changes with StatReloader
+[2025-12-03 07:33:06,313] INFO django.utils.autoreload: /home/ulrich/ALX_PRODEV/alx-backend-python/Django-Middleware-0x03/chats/middleware.py changed, reloading.
+[2025-12-03 07:33:06,878] INFO django.utils.autoreload: Watching for file changes with StatReloader
+[2025-12-03 07:33:13,472] INFO django.utils.autoreload: /home/ulrich/ALX_PRODEV/alx-backend-python/Django-Middleware-0x03/chats/middleware.py changed, reloading.
+[2025-12-03 07:33:14,282] INFO django.utils.autoreload: Watching for file changes with StatReloader

@@ -57,9 +57,8 @@ class RestrictAccessByTimeMiddleware:
             return HttpResponseForbidden("Access to this app is restricted between 9 PM and 6 AM.")
 
         return self.get_response(request)
-    
-    
-    class OffensiveLanguageMiddleware:
+      
+class OffensiveLanguageMiddleware:
         """
         Middleware that tracks the number of chat messages sent by each IP address
         and implements a time-based limit: 5 messages per minute.
@@ -95,8 +94,8 @@ class RestrictAccessByTimeMiddleware:
         
         
 class RolepermissionMiddleware:
-    def __def__(self, get_response):
-        self,get_response = get_response
+    def __init__(self, get_response):
+        self.get_response = get_response
         self.protected_paths = [
             # path to be restricted to Access 
             reverse('admin:index')
