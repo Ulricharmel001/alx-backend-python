@@ -81,6 +81,7 @@ class Conversation(models.Model):
 # Message Model
 
 class Message(models.Model):
+    read=models.BooleanField(default=False)
     parent_message = models.ForeignKey('self', null=True, blank=True, on_delete=models.CASCADE, related_name='replies')
     edited = models.BooleanField(default=False)
     message_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, db_index=True)
@@ -138,3 +139,21 @@ class MessageHistory(models.Model):
     def __str__(self):
         return f"History of message {self.message.message_id} at {self.edited_at}"
 
+"""
+
+Use this manager in your views to display only unread messages in a user’s inbox.
+"""
+
+class UnreadMessagesManager(models.Manager):
+    def for_user(self, user):
+        return self.filter(conversation__participants=user, read=False).only('message_id', 'sender', 'message_body', 'sent_at')
+class UnreadMessage(Message):
+    objects = UnreadMessagesManager()
+    
+    class Meta:
+        proxy = True
+    def __str__(self):
+        return f"Unread Message from {self.sender.email} at {self.sent_at}"
+    
+    
+    

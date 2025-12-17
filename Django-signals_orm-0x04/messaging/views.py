@@ -100,7 +100,9 @@ class MessageViewSet(viewsets.ModelViewSet):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def list(self, request, *args, **kwargs):
-        queryset = self.filter_queryset(self.get_queryset().select_related('sender').prefetch_related('replies'))
+        queryset = self.filter_queryset(self.get_queryset().select_related('sender').prefetch_related('replies')).only(
+            'message_id', 'sender__user_id', 'sender__email', 'message_body', 'sent_at', 'parent_message'
+        )
         page = self.paginate_queryset(queryset)
         if page is not None:
             serializer = self.get_serializer(page, many=True)

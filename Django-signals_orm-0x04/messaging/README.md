@@ -10,3 +10,8 @@ This particular signal help to log all the history of edited messages in a chat
  This feature allow uswrs to delete their account 
  it also contain a signal that immediatelly alert, the other instances
  the signal auto automatically triggered action to delete all nofication of that  user also messages
+
+
+ # New field in Message model
+ this help to indicate if message has been read or not 
+ also implemented the .only key word in my query this help to limit fields to query 
