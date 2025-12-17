@@ -113,13 +113,13 @@ class MessageViewSet(viewsets.ModelViewSet):
             return self.get_paginated_response(serializer.data)
         serializer = self.get_serializer(queryset, many=True)
         return Response(serializer.data)
-    def inbox_view(request):
-        user = request.user
-        unread_messages = UnreadMessagesManager.for_user(user)
-        serializer = MessageSerializer(unread_messages, many=True)
-        return Response(serializer.data)
     
-    
+def inbox_view(request):
+    user = request.user
+    unread_messages = UnreadMessagesManager.for_user(user)
+    serializer = MessageSerializer(unread_messages, many=True)
+    return Response(serializer.data)
+
     
     """Objective: Automatically clean up related data when a user deletes their account.
 
