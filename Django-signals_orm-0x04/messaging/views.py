@@ -16,8 +16,14 @@ from django.db.models.signals import post_delete
 from django.dispatch import receiver
 from .models import User, Message, Notification, MessageHistory
 
+"""
 
+    Modify the Message model to include a parent_message field (self-referential foreign key) to represent replies.
+
+    Implement a recursive query using Django’s ORM to fetch all replies to a message and display them in a threaded format in the user interface.
+    Use prefetchrelated and selectrelated to optimize querying of messages and their replies, reducing the number of database queries."""
 class ConversationViewSet(viewsets.ModelViewSet):
+
     permission_classes = [IsAuthenticated, IsParticipantOfConversation]
     serializer_class = ConversationSerializer
     filter_backends = [filters.SearchFilter, filters.OrderingFilter]
@@ -34,6 +40,7 @@ class ConversationViewSet(viewsets.ModelViewSet):
         return ConversationSerializer
 
     def retrieve(self, request, *args, **kwargs):
+        
         conversation_id = kwargs.get('pk')
         try:
             conversation = Conversation.objects.get(id=conversation_id)
@@ -48,6 +55,7 @@ class ConversationViewSet(viewsets.ModelViewSet):
         return Response(serializer.data)
 
     def create(self, request, *args, **kwargs):
+    
         serializer = ConversationCreateSerializer(data=request.data)
         if serializer.is_valid():
             conversation = serializer.save()

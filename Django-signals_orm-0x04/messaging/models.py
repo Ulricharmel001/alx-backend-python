@@ -79,7 +79,9 @@ class Conversation(models.Model):
 
 
 # Message Model
+
 class Message(models.Model):
+    parent_message = models.ForeignKey('self', null=True, blank=True, on_delete=models.CASCADE, related_name='replies')
     edited = models.BooleanField(default=False)
     message_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, db_index=True)
     sender = models.ForeignKey(User, on_delete=models.CASCADE, related_name='sent_messages')
