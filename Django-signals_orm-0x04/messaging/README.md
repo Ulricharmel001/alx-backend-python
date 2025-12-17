@@ -15,3 +15,6 @@ This particular signal help to log all the history of edited messages in a chat
  # New field in Message model
  this help to indicate if message has been read or not 
  also implemented the .only key word in my query this help to limit fields to query 
+
+# Caching of dataa
+Implement caching using djangoresframework to optimize data response and query time

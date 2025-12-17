@@ -3,6 +3,7 @@ from rest_framework import viewsets, filters, status
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.exceptions import NotFound
+from rest_framework import decorators
 from managers import UnreadMessagesManager
 from .models import Conversation, Message
 from .pagination import MessagePagination
@@ -100,7 +101,8 @@ class MessageViewSet(viewsets.ModelViewSet):
             message = serializer.save(sender=request.user)
             return Response(MessageSerializer(message).data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
+    # cache list of messages for 60 seconds
+    @decorators.cache_page(60) 
     def list(self, request, *args, **kwargs):
         queryset = self.filter_queryset(self.get_queryset().select_related('sender').prefetch_related('replies')).only(
             'message_id', 'sender__user_id', 'sender__email', 'message_body', 'sent_at', 'parent_message'
