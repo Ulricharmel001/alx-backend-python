@@ -1,5 +1,5 @@
 from .models import Message
-from django.db.models.signals import post_save, pre_save
+from django.db.models.signals import post_save, pre_save, pre_delete
 from django.dispatch import receiver
 from .models import Notification, User, MessageHistory
 
@@ -35,4 +35,15 @@ def log_message_edit(sender, instance, **kwargs):
         except Message.DoesNotExist:
             pass  # Message is new, no need to log
         
-        
+# Implement a post_delete signal on the User model to delete all messages, notifications, and message histories associated with the user.
+
+@receiver(pre_delete, sender=User)
+def delete_user_related_data(sender, instance, **kwargs):
+    # Delete all messages sent by the user
+    Message.objects.filter(sender=instance).delete()
+    
+    # Delete all notifications for the user
+    Notification.objects.filter(user=instance).delete()
+    
+    # Delete all message histories related to the user's messages
+    MessageHistory.objects.filter(message__sender=instance).delete()

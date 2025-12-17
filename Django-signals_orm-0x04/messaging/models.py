@@ -135,5 +135,4 @@ class MessageHistory(models.Model):
         ordering = ['-edited_at']
     def __str__(self):
         return f"History of message {self.message.message_id} at {self.edited_at}"
-    
-    
+
