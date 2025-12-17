@@ -6,3 +6,7 @@ when ever message is sent, notification of message is sent to all except the sen
 
 This particular signal help to log all the history of edited messages in a chat 
 
+# Feature to delete user account
+ This feature allow uswrs to delete their account 
+ it also contain a signal that immediatelly alert, the other instances
+ the signal auto automatically triggered action to delete all nofication of that  user also messages

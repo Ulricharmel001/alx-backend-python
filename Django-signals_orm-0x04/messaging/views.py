@@ -12,6 +12,9 @@ from .serializers import (
     MessageCreateSerializer
 )
 from .permissions import IsParticipantOfConversation
+from django.db.models.signals import post_delete
+from django.dispatch import receiver
+from .models import User, Message, Notification, MessageHistory
 
 
 class ConversationViewSet(viewsets.ModelViewSet):
@@ -97,3 +100,27 @@ class MessageViewSet(viewsets.ModelViewSet):
             return self.get_paginated_response(serializer.data)
         serializer = self.get_serializer(queryset, many=True)
         return Response(serializer.data)
+    
+    
+    
+    """Objective: Automatically clean up related data when a user deletes their account.
+
+Instructions:
+
+    Create a delete_user view that allows a user to delete their account.
+
+    Implement a post_delete signal on the User model to delete all messages, notifications, and message histories associated with the user.
+
+    Ensure that foreign key constraints are respected during the deletion process by using CASCADE or custom signal logic.
+
+"""
+
+class Delete_user_view(viewsets.ViewSet):
+    permission_classes = [IsAuthenticated]
+
+    def destroy(self, request, *args, **kwargs):
+        user = request.user
+        user.delete()
+        return Response({"detail": "User account and related data deleted successfully."},
+                        status=status.HTTP_204_NO_CONTENT)
+
