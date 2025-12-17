@@ -1,7 +1,9 @@
+from email import message
 from rest_framework import viewsets, filters, status
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.exceptions import NotFound
+from managers import UnreadMessagesManager
 from .models import Conversation, Message
 from .pagination import MessagePagination
 from .filters import MessageFilter
@@ -102,7 +104,8 @@ class MessageViewSet(viewsets.ModelViewSet):
     def list(self, request, *args, **kwargs):
         queryset = self.filter_queryset(self.get_queryset().select_related('sender').prefetch_related('replies')).only(
             'message_id', 'sender__user_id', 'sender__email', 'message_body', 'sent_at', 'parent_message'
-        )
+        ).unread.for_user(request.user)
+        
         page = self.paginate_queryset(queryset)
         if page is not None:
             serializer = self.get_serializer(page, many=True)
