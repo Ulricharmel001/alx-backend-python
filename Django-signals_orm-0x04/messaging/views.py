@@ -114,11 +114,17 @@ class MessageViewSet(viewsets.ModelViewSet):
         serializer = self.get_serializer(queryset, many=True)
         return Response(serializer.data)
     
-def inbox_view(request):
-    user = request.user
-    unread_messages = UnreadMessagesManager.for_user(user)
-    serializer = MessageSerializer(unread_messages, many=True)
-    return Response(serializer.data)
+    def unread_messages(self, request, *args, **kwargs):
+        """
+        Custom action to retrieve unread messages for the authenticated user.
+        """
+        queryset = UnreadMessagesManager.for_user(request.user).select_related('sender').prefetch_related('replies')
+        page = self.paginate_queryset(queryset)
+        if page is not None:
+            serializer = self.get_serializer(page, many=True)
+            return self.get_paginated_response(serializer.data)
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data)
 
     
     """Objective: Automatically clean up related data when a user deletes their account.
