@@ -2,6 +2,8 @@ import uuid
 from django.db import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 
+from messaging.managers import UnreadMessagesManager
+
 
 # 1️⃣ User Roles
 class UserRole(models.TextChoices):
@@ -139,5 +141,19 @@ class MessageHistory(models.Model):
     def __str__(self):
         return f"History of message {self.message.message_id} at {self.edited_at}"
 
+"""
 
+Use this manager in your views to display only unread messages in a user’s inbox.
+"""
+
+from .managers import UnreadMessagesManager
+class UnreadMessage(Message):
+    objects = UnreadMessagesManager()
+    
+    class Meta:
+        proxy = True
+    def __str__(self):
+        return f"Unread Message from {self.sender.email} at {self.sent_at}"
+    
+    
     
