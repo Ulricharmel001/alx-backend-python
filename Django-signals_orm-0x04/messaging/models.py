@@ -80,6 +80,7 @@ class Conversation(models.Model):
 
 # Message Model
 class Message(models.Model):
+    edited = models.BooleanField(default=False)
     message_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, db_index=True)
     sender = models.ForeignKey(User, on_delete=models.CASCADE, related_name='sent_messages')
     conversation = models.ForeignKey(Conversation, on_delete=models.CASCADE, related_name='messages')
@@ -93,17 +94,6 @@ class Message(models.Model):
     def __str__(self):
         return f"Message from {self.sender.email} at {self.sent_at}"
     
-    """
-
-    Create a Message model with fields like sender, receiver, content, and timestamp.
-
-    Use Django signals (e.g., post_save) to trigger a notification when a new Message instance is created.
-
-    Create a Notification model to store notifications, linking it to the User and Message models.
-
-    Write a signal that listens for new messages and automatically creates a notification for the receiving user.
-
-"""
 
 from django.db.models.signals import post_save
 from django.dispatch import receiver
@@ -121,3 +111,29 @@ class Notification(models.Model):
 
     def __str__(self):
         return f"Notification for {self.user.email} about message {self.message.message_id}"
+    
+    
+    """Objective: Log when a user edits a message and save the old content before the edit.
+
+Instructions:
+
+    Add an edited field to the Message model to track if a message has been edited.
+
+    Use the pre_save signal to log the old content of a message into a separate MessageHistory model before it’s updated.
+
+    Display the message edit history in the user interface, allowing users to view previous versions of their messages.
+"""
+
+class MessageHistory(models.Model):
+    history_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, db_index=True)
+    message = models.ForeignKey(Message, on_delete=models.CASCADE, related_name='history')
+    old_content = models.TextField(null=False)
+    edited_at = models.DateTimeField(auto_now_add=True)
+    edited_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='edited_messages')
+    class Meta:
+        db_table = 'message_history'    
+        ordering = ['-edited_at']
+    def __str__(self):
+        return f"History of message {self.message.message_id} at {self.edited_at}"
+    
+    
