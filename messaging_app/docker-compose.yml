@@ -1,0 +1,7 @@
+from : ubuntu:=@latest
+run apt-get update && apt-get install -y python3 python3-pip  
+copy . /app
+workdir /app
+run pip3 install -r requirements.txt
+cmd ["python3", "app.py"]
+  
