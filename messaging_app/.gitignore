@@ -15,7 +15,6 @@ tests/
 coverage
 
 # docker files
-Dockerfile
 docker-compose.override.yml
 *.env   
 # virtual environment
