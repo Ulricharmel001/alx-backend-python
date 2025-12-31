@@ -1,6 +1,5 @@
 messaging-env/
 .env
-docker-compose.yml 
 .DS_Store
 .vscode/
 
