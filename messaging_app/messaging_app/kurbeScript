@@ -1,11 +1,5 @@
 #!/bin/bash
 
-if ! command -v minikube >/dev/null 2>&1
-then
-    echo "Minikube is not installed. Please install it first."
-    exit 1
-fi
-
 minikube start --driver=docker
 kubectl cluster-info
 kubectl get pods -A
