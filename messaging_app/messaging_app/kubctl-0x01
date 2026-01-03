@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# Name of your deployment
+DEPLOYMENT_NAME=messaging-app
+NAMESPACE=default   
+
+echo "Scaling deployment $DEPLOYMENT_NAME to 3 replicas..."
+kubectl scale deployment $DEPLOYMENT_NAME --replicas=3 -n $NAMESPACE
+
+echo "Waiting a few seconds for pods to start..."
+sleep 10
+
+echo "Verifying pods are running..."
+kubectl get pods -n $NAMESPACE
+
+
+if command -v wrk &> /dev/null; then
+    echo "Running load test with wrk..."
+   
+
+    wrk -t2 -c10 -d10s http://localhost:30000/
+else
+    echo "wrk not installed, skipping load test."
+fi
+
+echo "Monitoring resource usage..."
+kubectl top pods -n $NAMESPACE
+
+
