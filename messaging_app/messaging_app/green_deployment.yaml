@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: messaging-app-green
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: messaging-app-green
+  template:
+    metadata:
+      labels:
+        app: messaging-app-green
+    spec:
+      containers:
+        - name: messaging-app
+          image: ulricharmel001/messaging-app:2.0  # new version
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8000

@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# Deploy blue
+kubectl apply -f blue_deployment.yaml
+
+# Deploy green
+kubectl apply -f green_deployment.yaml
+
+# Apply the service (initially points to blue)
+kubectl apply -f kubeservice.yaml
+
+echo "Waiting 10 seconds for pods to start..."
+sleep 10
+
+# Check green pods
+echo "Checking green deployment pods..."
+kubectl get pods -l app=messaging-app-green
+
+# Display logs from green pods to check for errors
+GREEN_PODS=$(kubectl get pods -l app=messaging-app-green -o name)
+for pod in $GREEN_PODS; do
+    echo "Logs for $pod:"
+    kubectl logs $pod
+done
+
+echo "Blue-Green deployment applied. Switch service selector to green when ready."
